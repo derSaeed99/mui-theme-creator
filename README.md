@@ -11,6 +11,22 @@ A powerful visual theme creation tool for Material-UI (MUI) v6, built with React
   - Light/Dark mode support
   - Preset themes available
 
+- **Component Preview**
+  - Live preview of MUI components
+  - All major component categories:
+    - Buttons & Controls
+    - Navigation
+    - Forms & Inputs
+    - Feedback & Progress
+    - Data Display
+    - Typography & Text
+  - Instant theme application
+
+- **Animation Preview**
+  - Test your theme with animated components
+  - Visualize transitions and effects
+  - Ensure consistent motion design
+
 - **Export Options**
   - JSON format
   - TypeScript configuration
