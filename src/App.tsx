@@ -1,8 +1,17 @@
 import { useState, lazy, Suspense } from "react";
 import { ComponentPreview } from "./ComponentPreview";
 import { ThemeOptions } from "@mui/material/styles";
-import { AppBar, Box, Tab, Tabs, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Tab,
+  Tabs,
+  Toolbar,
+  Typography,
+  IconButton,
+} from "@mui/material";
 import { CodeBlock } from "./CodeBlock";
+import { GitHub as GitHubIcon } from "@mui/icons-material";
 
 const ThemeSettings = lazy(() =>
   import("./ThemeSettings").then((module) => ({
@@ -138,7 +147,7 @@ export const App = () => {
   return (
     <>
       <AppBar position="sticky" sx={{ width: "100%" }}>
-        <Toolbar>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -166,6 +175,32 @@ export const App = () => {
               value="animations"
             />
           </Tabs>
+          <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+            <Typography
+              component="a"
+              href="https://mui.com/material-ui/customization/theming/"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                color: "#007FFF",
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
+              MUIv6 Docs
+            </Typography>
+            <IconButton
+              component="a"
+              href="https://github.com/yourusername/muiv6-theme-creator"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ color: "white" }}
+            >
+              <GitHubIcon />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
       <Suspense fallback={<Box sx={{ p: 4 }}>Loading...</Box>}>
