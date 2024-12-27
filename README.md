@@ -18,7 +18,7 @@ A powerful visual theme creation tool for Material-UI (MUI) v6, built with React
 
 ## 🚀 Live Demo
 
-Try it out: [MUI Theme Creator](https://muiv6-theme-creator.web.app/)
+Try it out: [MUI Theme Creator](https://muiv6-theme-creator.web.app/) or visit our [Live App](https://muiv6-theme-creator.web.app/)
 
 ## 🛠️ Development Setup
 
