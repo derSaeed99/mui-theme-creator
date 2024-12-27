@@ -1,4 +1,4 @@
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
+import { LiveEditor, LivePreview, LiveProvider } from "react-live";
 import { Box, styled, IconButton, Snackbar } from "@mui/material";
 import { useState } from "react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -24,26 +24,28 @@ const StyledPreview = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-const StyledError = styled(LiveError)(({ theme }) => ({
-  color: theme.palette.error.main,
-  padding: theme.spacing(1),
-  marginTop: theme.spacing(1),
-}));
-
 interface CodeBlockProps {
   code: string;
   mode: string;
+  noInline?: boolean;
+  noPreview?: boolean;
 }
 
-export const CodeBlock = ({ code, mode }: CodeBlockProps) => {
+export const CodeBlock = ({
+  code,
+  mode,
+  noInline = true,
+  noPreview = true,
+}: CodeBlockProps) => {
   const [showCopied, setShowCopied] = useState(false);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(code);
     setShowCopied(true);
   };
+
   return (
-    <LiveProvider code={code}>
+    <LiveProvider code={code} noInline={noInline}>
       <Box position="relative">
         <IconButton
           onClick={handleCopy}
@@ -61,18 +63,18 @@ export const CodeBlock = ({ code, mode }: CodeBlockProps) => {
         </IconButton>
 
         <StyledEditor mode={mode} />
-        <StyledPreview>
-          <LivePreview />
-        </StyledPreview>
-        <StyledError />
-
-        <Snackbar
-          open={showCopied}
-          autoHideDuration={2000}
-          onClose={() => setShowCopied(false)}
-          message="Code copied to clipboard"
-        />
+        {!noPreview && (
+          <StyledPreview>
+            <LivePreview />
+          </StyledPreview>
+        )}
       </Box>
+      <Snackbar
+        open={showCopied}
+        autoHideDuration={2000}
+        onClose={() => setShowCopied(false)}
+        message="Code copied to clipboard"
+      />
     </LiveProvider>
   );
 };

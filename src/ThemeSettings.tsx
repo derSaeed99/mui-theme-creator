@@ -8,17 +8,14 @@ import { SpacingSettings } from "./SpacingSettings";
 import { ShapeSettings } from "./ShapeSettings";
 import { TransitionsSettings } from "./TransitionsSettings";
 import { ThemePresetSelector } from "./ThemePresetSelector";
-import React from "react";
+import React, { memo } from "react";
 
 interface ThemeSettingsProps {
   themeOptions: ThemeOptions;
   setThemeOptions: React.Dispatch<React.SetStateAction<ThemeOptions>>;
 }
 
-export const ThemeSettings: React.FC<ThemeSettingsProps> = ({
-  themeOptions,
-  setThemeOptions,
-}) => {
+export const ThemeSettings = memo(({ themeOptions, setThemeOptions }: ThemeSettingsProps) => {
   const handlePresetSelect = (newTheme: ThemeOptions) => {
     setThemeOptions({
       ...newTheme,
@@ -231,4 +228,6 @@ module.exports = theme;`;
       </Box>
     </Box>
   );
-};
+});
+
+ThemeSettings.displayName = 'ThemeSettings';

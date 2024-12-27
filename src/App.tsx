@@ -1,9 +1,24 @@
-import { useState } from "react";
-import { ThemeSettings } from "./ThemeSettings";
+import { useState, lazy, Suspense } from "react";
 import { ComponentPreview } from "./ComponentPreview";
 import { ThemeOptions } from "@mui/material/styles";
 import { AppBar, Box, Tab, Tabs, Toolbar, Typography } from "@mui/material";
 import { CodeBlock } from "./CodeBlock";
+
+const ThemeSettings = lazy(() =>
+  import("./ThemeSettings").then((module) => ({
+    default: module.ThemeSettings,
+  }))
+);
+const ComponentsTab = lazy(() =>
+  import("./components/ComponentsTab").then((module) => ({
+    default: module.ComponentsTab,
+  }))
+);
+const AnimationsTab = lazy(() =>
+  import("./components/AnimationsTab").then((module) => ({
+    default: module.AnimationsTab,
+  }))
+);
 
 export const App = () => {
   const [themeOptions, setThemeOptions] = useState<ThemeOptions>({
@@ -97,7 +112,6 @@ export const App = () => {
     const params = new URLSearchParams(window.location.search);
     const tabValue = params.get("tab");
     if (!tabValue) {
-      // Set initial URL parameter if none exists
       params.set("tab", "settings");
       window.history.replaceState(
         {},
@@ -110,96 +124,151 @@ export const App = () => {
 
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
-    const params = new URLSearchParams(window.location.search);
-    params.set("tab", newValue.toString());
-    window.history.replaceState(
-      {},
-      "",
-      `${window.location.pathname}?${params.toString()}`
-    );
+    requestAnimationFrame(() => {
+      const params = new URLSearchParams(window.location.search);
+      params.set("tab", newValue.toString());
+      window.history.replaceState(
+        {},
+        "",
+        `${window.location.pathname}?${params.toString()}`
+      );
+    });
   };
 
   return (
     <>
       <AppBar position="sticky" sx={{ width: "100%" }}>
         <Toolbar>
-          <Tabs value={value} onChange={handleChange}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            sx={{
+              "& .MuiTabs-indicator": {
+                backgroundColor: (theme) => theme.palette.secondary.main,
+                height: 3,
+              },
+              "& .MuiTab-root": {
+                minWidth: "auto",
+                px: 3,
+              },
+            }}
+          >
             <Tab
               label={<Typography color="secondary">Theme Settings</Typography>}
-              value={"settings"}
+              value="settings"
             />
             <Tab
               label={<Typography color="secondary">Components</Typography>}
-              value={"components"}
+              value="components"
             />
             <Tab
               label={<Typography color="secondary">Animations</Typography>}
-              value={"animations"}
+              value="animations"
             />
           </Tabs>
         </Toolbar>
       </AppBar>
-      {value === "settings" && (
-        <Box
-          sx={{
-            display: "flex",
-            height: "calc(100vh - 64px)",
-            width: "100%",
-            overflow: "hidden",
-          }}
-        >
+      <Suspense fallback={<Box sx={{ p: 4 }}>Loading...</Box>}>
+        {value === "settings" && (
           <Box
             sx={{
-              flexShrink: 0,
-              width: "400px",
-              overflowY: "auto",
-              height: "100%",
-              borderRadius: 1,
-              boxShadow: 2,
-              padding: 2,
+              display: "flex",
+              height: "calc(100vh - 64px)",
+              width: "100%",
+              overflow: "hidden",
             }}
           >
-            <ThemeSettings
-              themeOptions={themeOptions}
-              setThemeOptions={setThemeOptions}
-            />
+            <Box
+              sx={{
+                flexShrink: 0,
+                width: "400px",
+                overflowY: "auto",
+                height: "100%",
+                borderRadius: 1,
+                boxShadow: 2,
+                padding: 2,
+              }}
+            >
+              <ThemeSettings
+                themeOptions={themeOptions}
+                setThemeOptions={setThemeOptions}
+              />
+            </Box>
+            <Box
+              sx={{
+                flex: 1,
+                overflowY: "auto",
+                height: "100%",
+                padding: 2,
+              }}
+            >
+              <ComponentPreview themeOptions={themeOptions} />
+            </Box>
+            <Box
+              sx={{
+                flexShrink: 0,
+                width: "400px",
+                overflowY: "auto",
+                backgroundColor: "background.paper",
+                borderRadius: 1,
+                boxShadow: 2,
+                padding: 2,
+                fontFamily: "monospace",
+                whiteSpace: "pre-wrap",
+              }}
+            >
+              <CodeBlock
+                mode={themeOptions?.palette?.mode ?? "dark"}
+                code={`const themeOptions = ${JSON.stringify(
+                  themeOptions,
+                  null,
+                  2
+                )
+                  .replace(/"([^"]+)":/g, "$1:")
+                  .replace(/"/g, "'")};`}
+              />
+            </Box>
           </Box>
+        )}
+        {value === "animations" && <AnimationsTab />}
+        {value === "components" && (
           <Box
             sx={{
-              flex: 1,
-              overflowY: "auto",
-              height: "100%",
-              padding: 2,
+              display: "flex",
+              height: "calc(100vh - 64px)",
+              width: "100%",
+              overflow: "hidden",
             }}
           >
-            <ComponentPreview themeOptions={themeOptions} />
+            <Box
+              sx={{
+                flexShrink: 0,
+                width: "400px",
+                overflowY: "auto",
+                height: "100%",
+                borderRadius: 1,
+                boxShadow: 2,
+                padding: 2,
+              }}
+            >
+              <ThemeSettings
+                themeOptions={themeOptions}
+                setThemeOptions={setThemeOptions}
+              />
+            </Box>
+            <Box
+              sx={{
+                flex: 1,
+                overflowY: "auto",
+                height: "100%",
+                padding: 2,
+              }}
+            >
+              <ComponentsTab themeOptions={themeOptions} />
+            </Box>
           </Box>
-          <Box
-            sx={{
-              flexShrink: 0,
-              width: "400px",
-              overflowY: "auto",
-              backgroundColor: "background.paper",
-              borderRadius: 1,
-              boxShadow: 2,
-              padding: 2,
-              fontFamily: "monospace",
-              whiteSpace: "pre-wrap",
-            }}
-          >
-            <CodeBlock
-              mode={themeOptions?.palette?.mode ?? "dark"}
-              code={`const themeOptions = ${JSON.stringify(
-                themeOptions,
-                null,
-                2
-              )
-                .replace(/"([^"]+)":/g, "$1:")
-                .replace(/"/g, "'")};`}
-            />
-          </Box>
-        </Box>
-      )}
+        )}
+      </Suspense>
     </>
   );
 };
