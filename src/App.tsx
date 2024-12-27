@@ -193,7 +193,7 @@ export const App = () => {
             </Typography>
             <IconButton
               component="a"
-              href="https://github.com/yourusername/muiv6-theme-creator"
+              href="https://github.com/derSaeed99/mui-theme-creator"
               target="_blank"
               rel="noopener noreferrer"
               sx={{ color: "white" }}
