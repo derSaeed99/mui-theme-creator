@@ -18,9 +18,7 @@ const StyledEditor = styled(LiveEditor)<{ mode: string }>(
       color: `${theme.palette.primary.main} !important`,
       "& .token.plain": {
         color:
-          mode === "dark"
-            ? theme.palette.primary.main
-            : theme.palette.secondary.main,
+          theme.palette.secondary.main,
       },
     },
     "& textarea": {
