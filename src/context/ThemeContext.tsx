@@ -20,7 +20,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [mode, setMode] = useState<"light" | "dark">("light");
   const [themeOptions, setThemeOptions] = useState<ThemeOptions>({
     palette: {
-      mode: "light",
+      mode,
       // Main colors
       primary: {
         main: "#1976d2",
@@ -106,7 +106,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   });
 
   // Define the app theme directly here
-const appTheme = useMemo(
+  const appTheme = useMemo(
     () =>
       createTheme({
         palette: {
