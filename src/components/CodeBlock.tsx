@@ -11,7 +11,7 @@ const StyledEditor = styled(LiveEditor)<{ mode: string }>(
           ? "black !important"
           : `${theme.palette.background.paper} !important`,
       border: `1px solid ${
-        mode === "dark" ? "white" : theme.palette.primary.main
+         theme.palette.primary.main
       }`,
       borderRadius: theme.shape.borderRadius,
       margin: "0 !important",
