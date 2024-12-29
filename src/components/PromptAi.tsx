@@ -136,7 +136,7 @@ Return only a valid Material-UI themeOptions object in JSON format based on the 
       <TextField
         fullWidth
         disabled={loading}
-        label="Let Ask AI"
+        label="Let AI Create"
         placeholder="e.g., light theme with green primary and red secondary"
         onChange={(e) => setTypePrompt(e.target.value)}
         InputProps={{
