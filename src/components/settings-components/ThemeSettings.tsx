@@ -9,6 +9,7 @@ import { ShapeSettings } from "./ShapeSettings";
 import { TransitionsSettings } from "./TransitionsSettings";
 import { ThemePresetSelector } from "./ThemePresetSelector";
 import { useTheme } from "../../context/useTheme";
+import { PromptAi } from "../PromptAi";
 
 export const ThemeSettings = () => {
   const { themeOptions, setThemeOptions, setMode } = useTheme();
@@ -19,7 +20,6 @@ export const ThemeSettings = () => {
       transitions: themeOptions.transitions,
     });
   };
-
   const exportTheme = (format: "json" | "ts" | "js") => {
     const fullTheme = {
       ...themeOptions,
@@ -160,6 +160,7 @@ module.exports = theme;`;
     >
       <Box sx={{ display: "flex", flexDirection: "column", ml: 2 }}>
         <ThemePresetSelector onSelect={handlePresetSelect} setMode={setMode} />
+        <PromptAi />
         <PaletteSettings
           themeOptions={themeOptions}
           setThemeOptions={setThemeOptions}

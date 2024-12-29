@@ -68,10 +68,10 @@ export const App = () => {
         {value === "settings" && (
           <ThemeSettingsTab themeOptions={themeOptions} mode={mode} />
         )}
-        {value === "animations" && <AnimationsTab />}
         {value === "components" && (
-              <ComponentsTab themeOptions={themeOptions} />
+          <ComponentsTab themeOptions={themeOptions} />
         )}
+        {value === "animations" && <AnimationsTab />}
       </Suspense>
     </>
   );

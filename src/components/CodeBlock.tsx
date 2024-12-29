@@ -66,7 +66,7 @@ export const CodeBlock = ({
             position: "absolute",
             right: 1,
             top: 1,
-            color: "#fff",
+            color: mode ==="light" ?"#black": "#fff",
             "&:hover": {
               backgroundColor: "action.hover",
             },
