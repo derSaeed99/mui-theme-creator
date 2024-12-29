@@ -2,67 +2,84 @@ import { createTheme } from "@mui/material/styles";
 import { ThemeOptions } from "@mui/material/styles";
 export const theme = createTheme({
   palette: {
-    mode: "light",
+    mode: 'light',
     primary: {
-      main: "#000000",
+      main: '#6200EA',
+      light: '#7C4DFF',
+      dark: '#4A148C'
     },
     secondary: {
-      main: "#868384",
+      main: '#00E5FF',
+      light: '#18FFFF',
+      dark: '#00B8D4'
     },
+    error: {
+      main: '#f44336',
+      light: '#e57373',
+      dark: '#d32f2f'
+    },
+    warning: {
+      main: '#ffa726',
+      light: '#ffb74d',
+      dark: '#f57c00'
+    },
+    info: {
+      main: '#29b6f6',
+      light: '#4fc3f7',
+      dark: '#0288d1'
+    },
+    success: {
+      main: '#66bb6a',
+      light: '#81c784',
+      dark: '#388e3c'
+    },
+    background: {
+      default: '#ffffff',
+      paper: '#f5f5f5'
+    },
+    text: {
+      primary: 'rgba(0, 0, 0, 0.87)',
+      secondary: 'rgba(0, 0, 0, 0.6)',
+      disabled: 'rgba(0, 0, 0, 0.38)'
+    },
+    divider: 'rgba(0, 0, 0, 0.12)',
+    action: {
+      active: 'rgba(0, 0, 0, 0.54)',
+      hover: 'rgba(0, 0, 0, 0.04)',
+      selected: 'rgba(0, 0, 0, 0.08)',
+      disabled: 'rgba(0, 0, 0, 0.26)',
+      disabledBackground: 'rgba(0, 0, 0, 0.12)'
+    },
+    grey: {
+      50: '#fafafa',
+      100: '#f5f5f5',
+      200: '#eeeeee',
+      300: '#e0e0e0',
+      400: '#bdbdbd',
+      500: '#9e9e9e',
+      600: '#757575',
+      700: '#616161',
+      800: '#424242',
+      900: '#212121'
+    }
   },
   typography: {
-    fontFamily: "Roboto, sans-serif",
-    fontSize: 14,
+    fontFamily: 'Inter, sans-serif',
+    h1: {
+      fontWeight: 700
+    },
+    button: {
+      textTransform: 'none'
+    }
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 16
   },
   transitions: {
     duration: {
-      standard: 300,
-    },
-  },
-  components: {
-    MuiInputBase: {
-      styleOverrides: {
-        root: {
-          color: "#000000",
-        },
-        input: {
-          color: "#000000",
-          "&::placeholder": {
-            color: "#868384",
-            opacity: 1,
-          },
-        },
-      },
-    },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#868384",
-          },
-          "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#000000",
-          },
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#000000",
-          },
-        },
-      },
-    },
-    MuiFormLabel: {
-      styleOverrides: {
-        root: {
-          color: "#868384", // Label matches your secondary color
-          "&.Mui-focused": {
-            color: "#000000", // Label becomes black (primary color) when focused
-          },
-        },
-      },
-    },
-  },
+      standard: 300
+    }
+  }
 });
 
 export const predefinedThemes: Record<string, ThemeOptions> = {

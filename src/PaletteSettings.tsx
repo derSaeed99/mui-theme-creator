@@ -10,13 +10,14 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  useTheme,
+  useTheme as useMuiTheme
 } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material";
 import { ThemeOptions } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { getColorForMode } from "./utils/themeUtils";
 import { ColorOption } from "./types/mui";
+import { useTheme } from "./context/useTheme";
 
 interface PaletteSettingsProps {
   themeOptions: ThemeOptions;
@@ -39,11 +40,13 @@ export const PaletteSettings: React.FC<PaletteSettingsProps> = ({
   themeOptions,
   setThemeOptions,
 }) => {
-  const theme = useTheme();
   const currentMode = themeOptions?.palette?.mode || "light";
+  const theme = useMuiTheme()
+  const { setMode } = useTheme();
 
   const handleModeChange = (event: SelectChangeEvent) => {
     const newMode = event.target.value as "light" | "dark";
+    setMode(newMode)
     setThemeOptions((prev) => ({
       ...prev,
       palette: {

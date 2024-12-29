@@ -3,23 +3,26 @@ import { Box, styled, IconButton, Snackbar } from "@mui/material";
 import { useState } from "react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
-const StyledEditor = styled(LiveEditor)<{ mode: string }>(({ theme }) => ({
+const StyledEditor = styled(LiveEditor)<{ mode: string }>(({ theme, mode }) => ({
   "& pre": {
-    backgroundColor: "black !important",
-    border: "none",
+    backgroundColor: mode === "dark" ? "black !important" : `${theme.palette.background.paper} !important`,
+    border: `1px solid ${mode === "dark" ? "white" : theme.palette.primary.main}`,
     borderRadius: theme.shape.borderRadius,
     margin: "0 !important",
-    color: "#fff !important",
+    color: `${theme.palette.primary.main} !important`,
+    "& .token.plain": {
+      color: mode === "dark" ? theme.palette.primary.main : theme.palette.secondary.main,
+    },
   },
   "& textarea": {
     borderRadius: theme.shape.borderRadius,
-    color: "#fff !important",
+    color: `${theme.palette.background.paper} !important`,
   },
 }));
 
 const StyledPreview = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
-  backgroundColor: theme.palette.background.default,
+  backgroundColor: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
   marginTop: theme.spacing(2),
 }));

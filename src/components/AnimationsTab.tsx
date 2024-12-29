@@ -2,6 +2,7 @@ import { Box, Grid, Typography, Slider, Select, MenuItem } from "@mui/material";
 import { keyframes } from "@emotion/react";
 import { CodeBlock } from "../CodeBlock";
 import { useState } from "react";
+import { useTheme } from "../context/useTheme";
 
 // Sample predefined animations
 const animations = {
@@ -97,6 +98,7 @@ const animations = {
 type AnimationType = keyof typeof animations;
 
 export const AnimationsTab = () => {
+  const { mode } = useTheme();
   const [selectedAnimation, setSelectedAnimation] =
     useState<AnimationType | null>(null);
   const [duration, setDuration] = useState<number>(500);
@@ -267,7 +269,7 @@ export const AnimationsTab = () => {
         {selectedAnimation && (
           <Box sx={{ flex: 1 }}>
             <CodeBlock
-              mode="dark"
+              mode={mode}
               code={
                 trigger === "@keyframes"
                   ? `import { keyframes } from "@emotion/react";
