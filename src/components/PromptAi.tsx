@@ -132,7 +132,7 @@ Return only a valid Material-UI themeOptions object in JSON format based on the 
     setPrompt(promptDescription);
   };
   return (
-    <Box display="flex">
+    <Box display="flex" sx={{mb:2}}>
       <TextField
         fullWidth
         disabled={loading}
