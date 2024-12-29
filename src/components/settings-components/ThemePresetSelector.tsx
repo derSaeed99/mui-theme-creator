@@ -7,14 +7,18 @@ import {
   Typography,
 } from "@mui/material";
 import { ThemeOptions } from "@mui/material/styles";
-import { predefinedThemes } from "./theme";
-import { ColorOption, TypographyOption } from "./types/mui";
+import { predefinedThemes } from "../../theme";
+import { ColorOption, TypographyOption } from "../../types/mui";
 
 interface ThemePresetSelectorProps {
   onSelect: (theme: ThemeOptions) => void;
+  setMode: (mode: "light" | "dark") => void;
 }
 
-export const ThemePresetSelector = ({ onSelect }: ThemePresetSelectorProps) => {
+export const ThemePresetSelector = ({
+  onSelect,
+  setMode,
+}: ThemePresetSelectorProps) => {
   return (
     <FormControl fullWidth sx={{ mb: 3 }}>
       <InputLabel id="theme-preset-label">Theme Presets</InputLabel>
@@ -25,7 +29,9 @@ export const ThemePresetSelector = ({ onSelect }: ThemePresetSelectorProps) => {
         onChange={(event) => {
           const themeName = event.target.value as string;
           if (themeName) {
-            onSelect(predefinedThemes[themeName]);
+            const selectedTheme = predefinedThemes[themeName];
+            onSelect(selectedTheme);
+            setMode(selectedTheme?.palette?.mode ?? "light");
           }
         }}
       >

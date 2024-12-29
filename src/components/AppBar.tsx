@@ -17,31 +17,35 @@ interface AppBarProps {
 export const AppBar = ({value, handleChange}:AppBarProps) => {
   return (
     <TopBar position="sticky" sx={{ width: "100%" }}>
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
         <Tabs
           value={value}
           onChange={handleChange}
           sx={{
             "& .MuiTabs-indicator": {
-              backgroundColor: (theme) => theme.palette.secondary.main,
+              backgroundColor: "#d32f2f",
               height: 3,
             },
             "& .MuiTab-root": {
               minWidth: "auto",
               px: 3,
+              color: "white",
+              "&.Mui-selected": {
+                color: "#d32f2f",
+              },
             },
           }}
         >
           <Tab
-            label={<Typography color="secondary">Theme Settings</Typography>}
+            label={<Typography>Theme Settings</Typography>}
             value="settings"
           />
           <Tab
-            label={<Typography color="secondary">Components</Typography>}
+            label={<Typography>Components</Typography>}
             value="components"
           />
           <Tab
-            label={<Typography color="secondary">Animations</Typography>}
+            label={<Typography>Animations</Typography>}
             value="animations"
           />
         </Tabs>

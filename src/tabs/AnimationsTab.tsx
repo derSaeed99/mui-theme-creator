@@ -1,6 +1,6 @@
 import { Box, Grid, Typography, Slider, Select, MenuItem } from "@mui/material";
 import { keyframes } from "@emotion/react";
-import { CodeBlock } from "../CodeBlock";
+import { CodeBlock } from "../components/CodeBlock";
 import { useState } from "react";
 import { useTheme } from "../context/useTheme";
 

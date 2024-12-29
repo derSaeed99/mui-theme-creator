@@ -118,8 +118,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
           },
           secondary: {
             main: "#f4578e",
-            light: "#f4578e",
-            dark: "#dc004e",
+            light: "#f1a7b8",
+            dark: "#9b1b30",
           },
           background: {
             default: mode === "dark" ? "#0A1929" : "#ffffff",

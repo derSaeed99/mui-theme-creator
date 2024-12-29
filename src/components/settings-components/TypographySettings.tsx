@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField, Typography } from "@mui/material";
 import { ThemeOptions } from "@mui/material/styles";
-import { TypographyOption } from "./types/mui";
+import { TypographyOption } from "../../types/mui";
 
 interface TypographySettingsProps {
   themeOptions: ThemeOptions;
