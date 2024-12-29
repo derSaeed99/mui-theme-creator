@@ -162,6 +162,7 @@ Return only a valid Material-UI themeOptions object in JSON format based on the 
           shrink: true,
         }}
         sx={(theme) => ({
+            border:0,
           backgroundColor: `${theme.palette.secondary.main}80`,
           borderRadius: theme.shape.borderRadius,
           "& .MuiInputBase-input::placeholder": {
@@ -173,7 +174,7 @@ Return only a valid Material-UI themeOptions object in JSON format based on the 
           "&:hover .MuiOutlinedInput-notchedOutline": {
             borderColor: "transparent",
           },
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          "&:focused .MuiOutlinedInput-notchedOutline": {
             borderColor: "transparent",
           },
         })}
