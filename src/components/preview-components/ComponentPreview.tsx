@@ -1,5 +1,3 @@
-import React from "react";
-import { ThemeProvider, createTheme, ThemeOptions } from "@mui/material/styles";
 import {
   Box,
   Button,
@@ -24,6 +22,8 @@ import {
   Tooltip,
   Badge,
   Avatar,
+  ThemeProvider,
+  createTheme,
 } from "@mui/material";
 import {
   Favorite,

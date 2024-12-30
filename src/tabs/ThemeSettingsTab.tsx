@@ -1,17 +1,11 @@
-import { Box, ThemeOptions } from "@mui/material";
+import { Box } from "@mui/material";
 import { CodeBlock } from "../components/CodeBlock";
 import { ComponentPreview } from "../components/preview-components/ComponentPreview";
 import { ThemeSettings } from "../components/settings-components/ThemeSettings";
+import { useTheme } from "../context/useTheme";
 
-interface ThemeSettingsTabProps {
-  themeOptions: ThemeOptions;
-  mode: "light" | "dark";
-}
-
-export const ThemeSettingsTab = ({
-  themeOptions,
-  mode,
-}: ThemeSettingsTabProps) => {
+export const ThemeSettingsTab = () => {
+  const { themeOptions, mode } = useTheme();
   return (
     <Box
       sx={{

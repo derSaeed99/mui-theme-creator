@@ -1,7 +1,6 @@
 import { useState, lazy, Suspense } from "react";
 import { Box, CircularProgress } from "@mui/material";
 import { AppBar } from "./components/AppBar";
-import { useTheme } from "./context/useTheme";
 
 const ThemeSettingsTab = lazy(() =>
   import("./tabs/ThemeSettingsTab").then((module) => ({
@@ -20,7 +19,6 @@ const AnimationsTab = lazy(() =>
 );
 
 export const App = () => {
-  const { themeOptions, mode } = useTheme();
   const [value, setValue] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     const tabValue = params.get("tab");
@@ -65,12 +63,8 @@ export const App = () => {
           </Box>
         }
       >
-        {value === "settings" && (
-          <ThemeSettingsTab themeOptions={themeOptions} mode={mode} />
-        )}
-        {value === "components" && (
-          <ComponentsTab themeOptions={themeOptions} />
-        )}
+        {value === "settings" && <ThemeSettingsTab />}
+        {value === "components" && <ComponentsTab />}
         {value === "animations" && <AnimationsTab />}
       </Suspense>
     </>
