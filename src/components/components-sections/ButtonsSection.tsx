@@ -36,7 +36,6 @@ export const ButtonsSection = ({ themeOptions }: ButtonsSectionProps) => {
               color: (themeOptions?.palette?.primary as ColorOption)
                 ?.contrastText,
               borderRadius: `${themeOptions?.shape?.borderRadius}px`,
-              textTransform: "none",
               "&:hover": {
                 bgcolor: getColorForMode(themeOptions, "primary", currentMode),
                 opacity: 0.8,
@@ -55,7 +54,6 @@ export const ButtonsSection = ({ themeOptions }: ButtonsSectionProps) => {
                 currentMode
               ),
               borderRadius: `${themeOptions?.shape?.borderRadius}px`,
-              textTransform: "none",
               "&:hover": {
                 borderColor: getColorForMode(
                   themeOptions,
@@ -74,7 +72,6 @@ export const ButtonsSection = ({ themeOptions }: ButtonsSectionProps) => {
             sx={{
               color: getColorForMode(themeOptions, "secondary", currentMode),
               borderRadius: `${themeOptions?.shape?.borderRadius}px`,
-              textTransform: "none",
               "&:hover": {
                 bgcolor: "transparent",
                 opacity: 0.8,
@@ -88,7 +85,6 @@ export const ButtonsSection = ({ themeOptions }: ButtonsSectionProps) => {
             disabled
             sx={{
               borderRadius: `${themeOptions?.shape?.borderRadius}px`,
-              textTransform: "none",
               bgcolor: themeOptions?.palette?.action?.disabledBackground,
               color: themeOptions?.palette?.action?.disabled,
             }}

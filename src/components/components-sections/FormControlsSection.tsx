@@ -26,7 +26,7 @@ export const FormControlsSection = ({
   const currentMode = themeOptions?.palette?.mode || "light";
 
   return (
-    <Grid item xs={12} >
+    <Grid item xs={12}>
       <Paper
         sx={{
           p: 3,
@@ -51,10 +51,16 @@ export const FormControlsSection = ({
             },
             "& .MuiInputLabel-root": {
               color: themeOptions?.palette?.text?.secondary,
+              borderColor: getColorForMode(
+                themeOptions,
+                "primary",
+                currentMode
+              ),
             },
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: themeOptions?.palette?.divider,
             },
+            borderColor: getColorForMode(themeOptions, "primary", currentMode),
           }}
         />
         <Divider sx={{ my: 2, borderColor: themeOptions?.palette?.divider }} />
@@ -66,10 +72,16 @@ export const FormControlsSection = ({
           sx={{
             "& .MuiOutlinedInput-root": {
               borderRadius: `${themeOptions?.shape?.borderRadius}px`,
+              borderColor: getColorForMode(
+                themeOptions,
+                "primary",
+                currentMode
+              ),
             },
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: themeOptions?.palette?.divider,
             },
+            borderColor: getColorForMode(themeOptions, "primary", currentMode),
           }}
         >
           <MenuItem value="1">Option 1</MenuItem>

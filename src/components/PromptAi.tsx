@@ -5,6 +5,7 @@ import {
   ThemeOptions,
   CircularProgress,
   InputAdornment,
+  Typography,
 } from "@mui/material";
 import { useGetGemini } from "../hooks/useGetGemini";
 import { useTheme } from "../context/useTheme";
@@ -44,13 +45,23 @@ export const PromptAi = () => {
           ...prevOptions,
           ...newThemeOptions,
         }));
-          setPrompt(null);
-          setTypePrompt("")
+        setPrompt(null);
+        setTypePrompt("");
       } else {
         console.error("Invalid theme options received from AI.");
       }
     }
   }, [result, setThemeOptions]);
+
+  const maxWords = 30; // Set the maximum number of words
+
+  const handleTypePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    const wordCount = inputValue.trim().split(/\s+/).length; // Count words
+    if (wordCount <= maxWords) {
+      setTypePrompt(inputValue); // Update state if within limit
+    }
+  };
 
   const promptDescription = `
 Create a Material-UI themeOptions object with the following structure:
@@ -132,13 +143,13 @@ Return only a valid Material-UI themeOptions object in JSON format based on the 
     setPrompt(promptDescription);
   };
   return (
-    <Box display="flex" sx={{mb:2}}>
+    <Box sx={{ mb: 2 }}>
       <TextField
         fullWidth
         disabled={loading}
         label="Let AI Create"
         placeholder="e.g., light theme with green primary and red secondary"
-        onChange={(e) => setTypePrompt(e.target.value)}
+        onChange={handleTypePromptChange}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -157,12 +168,15 @@ Return only a valid Material-UI themeOptions object in JSON format based on the 
               )}
             </InputAdornment>
           ),
+          inputProps: {
+            maxLength: 200, // Set max length for characters
+          },
         }}
         InputLabelProps={{
           shrink: true,
         }}
         sx={(theme) => ({
-            border:0,
+          border: 0,
           backgroundColor: `${theme.palette.secondary.main}80`,
           borderRadius: theme.shape.borderRadius,
           "& .MuiInputBase-input::placeholder": {
@@ -179,6 +193,9 @@ Return only a valid Material-UI themeOptions object in JSON format based on the 
           },
         })}
       />
+      <Typography variant="caption" color="textSecondary" sx={{ ml: 1 }}>
+        {maxWords - typePrompt.split(/\s+/).length} words remaining
+      </Typography>
     </Box>
   );
 };
