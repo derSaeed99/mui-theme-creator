@@ -11,17 +11,12 @@ import {
   Radio,
   Divider,
 } from "@mui/material";
-import { ThemeOptions } from "@mui/material/styles";
+import { useTheme } from "../../context/useTheme";
 import { useState } from "react";
 import { getColorForMode } from "../../utils/themeUtils";
 
-interface FormControlsSectionProps {
-  themeOptions: ThemeOptions;
-}
-
-export const FormControlsSection = ({
-  themeOptions,
-}: FormControlsSectionProps) => {
+export const FormControlsSection = () => {
+  const { themeOptions } = useTheme();
   const [selectValue, setSelectValue] = useState("1");
   const currentMode = themeOptions?.palette?.mode || "light";
 

@@ -1,13 +1,10 @@
 import { Grid, Paper, Typography, Box, Button, Divider } from "@mui/material";
-import { ThemeOptions } from "@mui/material/styles";
+import { useTheme } from "../../context/useTheme";
 import { getColorForMode } from "../../utils/themeUtils";
 import { ColorOption } from "../../types/mui";
 
-interface ButtonsSectionProps {
-  themeOptions: ThemeOptions;
-}
-
-export const ButtonsSection = ({ themeOptions }: ButtonsSectionProps) => {
+export const ButtonsSection = () => {
+  const { themeOptions } = useTheme();
   const currentMode = themeOptions?.palette?.mode || "light";
 
   return (

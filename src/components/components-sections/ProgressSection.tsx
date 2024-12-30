@@ -7,15 +7,12 @@ import {
   LinearProgress,
   Divider,
 } from "@mui/material";
-import { ThemeOptions } from "@mui/material/styles";
+import { useTheme } from "../../context/useTheme";
 import { getColorForMode } from "../../utils/themeUtils";
 import { ColorOption } from "../../types/mui";
 
-interface ProgressSectionProps {
-  themeOptions: ThemeOptions;
-}
-
-export const ProgressSection = ({ themeOptions }: ProgressSectionProps) => {
+export const ProgressSection = () => {
+  const { themeOptions } = useTheme();
   const currentMode = themeOptions?.palette?.mode || "light";
 
   return (

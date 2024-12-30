@@ -1,13 +1,10 @@
 import { Grid, Paper, Typography, Box, Slider } from "@mui/material";
-import { ThemeOptions } from "@mui/material/styles";
+import { useTheme } from "../../context/useTheme";
 import { getColorForMode } from "../../utils/themeUtils";
 import { ColorOption } from "../../types/mui";
 
-interface SlidersSectionProps {
-  themeOptions: ThemeOptions;
-}
-
-export const SlidersSection = ({ themeOptions }: SlidersSectionProps) => {
+export const SlidersSection = () => {
+  const { themeOptions } = useTheme();
   const currentMode = themeOptions?.palette?.mode || "light";
 
   return (

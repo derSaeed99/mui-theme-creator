@@ -1,49 +1,49 @@
 import { Grid, Paper, Typography, Box, Tabs, Tab } from "@mui/material";
-import { ThemeOptions } from "@mui/material/styles";
+import { useTheme } from "../../context/useTheme";
 import { useState } from "react";
 import { getColorForMode } from "../../utils/themeUtils";
 
-interface NavigationSectionProps {
-  themeOptions: ThemeOptions;
-}
-
-export const NavigationSection = ({ themeOptions }: NavigationSectionProps) => {
+export const NavigationSection = () => {
   const [value, setValue] = useState(0);
+  const { themeOptions } = useTheme();
   const currentMode = themeOptions?.palette?.mode || "light";
 
-    return (
-      
-    <Grid item xs={12} >
-      <Paper 
-        sx={{ 
+  return (
+    <Grid item xs={12}>
+      <Paper
+        sx={{
           p: 3,
           borderRadius: `${themeOptions?.shape?.borderRadius}px`,
-          bgcolor: themeOptions?.palette?.background?.paper
+          bgcolor: themeOptions?.palette?.background?.paper,
         }}
       >
-        <Typography 
-          variant="h6" 
+        <Typography
+          variant="h6"
           gutterBottom
           sx={{
-            color: themeOptions?.palette?.text?.primary
+            color: themeOptions?.palette?.text?.primary,
           }}
         >
           Navigation
         </Typography>
-        <Tabs 
-          value={value} 
+        <Tabs
+          value={value}
           onChange={(_, newValue) => setValue(newValue)}
           sx={{
-            '& .MuiTab-root': {
+            "& .MuiTab-root": {
               color: themeOptions?.palette?.text?.secondary,
               textTransform: "none",
             },
-            '& .Mui-selected': {
+            "& .Mui-selected": {
               color: getColorForMode(themeOptions, "primary", currentMode),
             },
-            '& .MuiTabs-indicator': {
-              backgroundColor: getColorForMode(themeOptions, "primary", currentMode),
-            }
+            "& .MuiTabs-indicator": {
+              backgroundColor: getColorForMode(
+                themeOptions,
+                "primary",
+                currentMode
+              ),
+            },
           }}
         >
           <Tab label="Tab 1" />
@@ -52,27 +52,27 @@ export const NavigationSection = ({ themeOptions }: NavigationSectionProps) => {
         </Tabs>
         <Box sx={{ mt: 2 }}>
           {value === 0 && (
-            <Typography 
+            <Typography
               sx={{
-                color: themeOptions?.palette?.text?.primary
+                color: themeOptions?.palette?.text?.primary,
               }}
             >
               Tab 1 Content
             </Typography>
           )}
           {value === 1 && (
-            <Typography 
+            <Typography
               sx={{
-                color: themeOptions?.palette?.text?.primary
+                color: themeOptions?.palette?.text?.primary,
               }}
             >
               Tab 2 Content
             </Typography>
           )}
           {value === 2 && (
-            <Typography 
+            <Typography
               sx={{
-                color: themeOptions?.palette?.text?.primary
+                color: themeOptions?.palette?.text?.primary,
               }}
             >
               Tab 3 Content
@@ -82,4 +82,4 @@ export const NavigationSection = ({ themeOptions }: NavigationSectionProps) => {
       </Paper>
     </Grid>
   );
-}; 
+};

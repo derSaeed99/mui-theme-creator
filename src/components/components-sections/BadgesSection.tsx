@@ -7,7 +7,6 @@ import {
   Avatar,
   Divider,
 } from "@mui/material";
-import { ThemeOptions } from "@mui/material/styles";
 import {
   Mail as MailIcon,
   Notifications as NotificationsIcon,
@@ -15,14 +14,11 @@ import {
 } from "@mui/icons-material";
 import { getColorForMode } from "../../utils/themeUtils";
 import { ColorOption } from "../../types/mui";
+import { useTheme } from "../../context/useTheme";
 
-interface BadgesSectionProps {
-  themeOptions: ThemeOptions;
-}
-
-export const BadgesSection = ({ themeOptions }: BadgesSectionProps) => {
+export const BadgesSection = () => {
+  const { themeOptions } = useTheme();
   const currentMode = themeOptions?.palette?.mode || "light";
-
   return (
     <Grid item xs={12}>
       <Paper

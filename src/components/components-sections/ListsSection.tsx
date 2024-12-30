@@ -8,7 +8,7 @@ import {
   ListItemText,
   Divider,
 } from "@mui/material";
-import { ThemeOptions } from "@mui/material/styles";
+import { useTheme } from "../../context/useTheme";
 import {
   Inbox as InboxIcon,
   Star as StarIcon,
@@ -16,11 +16,8 @@ import {
 } from "@mui/icons-material";
 import { getColorForMode } from "../../utils/themeUtils";
 
-interface ListsSectionProps {
-  themeOptions: ThemeOptions;
-}
-
-export const ListsSection = ({ themeOptions }: ListsSectionProps) => {
+export const ListsSection = () => {
+  const { themeOptions } = useTheme();
   const currentMode = themeOptions?.palette?.mode || "light";
 
   return (
@@ -45,14 +42,20 @@ export const ListsSection = ({ themeOptions }: ListsSectionProps) => {
           <ListItem>
             <ListItemIcon>
               <InboxIcon
-                sx={{ color: getColorForMode(themeOptions, "primary", currentMode) }}
+                sx={{
+                  color: getColorForMode(themeOptions, "primary", currentMode),
+                }}
               />
             </ListItemIcon>
             <ListItemText
               primary={
                 <Typography
                   sx={{
-                    color: getColorForMode(themeOptions, "primary", currentMode),
+                    color: getColorForMode(
+                      themeOptions,
+                      "primary",
+                      currentMode
+                    ),
                   }}
                 >
                   Inbox
@@ -73,14 +76,24 @@ export const ListsSection = ({ themeOptions }: ListsSectionProps) => {
           <ListItem>
             <ListItemIcon>
               <StarIcon
-                sx={{ color: getColorForMode(themeOptions, "secondary", currentMode) }}
+                sx={{
+                  color: getColorForMode(
+                    themeOptions,
+                    "secondary",
+                    currentMode
+                  ),
+                }}
               />
             </ListItemIcon>
             <ListItemText
               primary={
                 <Typography
                   sx={{
-                    color: getColorForMode(themeOptions, "secondary", currentMode),
+                    color: getColorForMode(
+                      themeOptions,
+                      "secondary",
+                      currentMode
+                    ),
                   }}
                 >
                   Starred
@@ -101,14 +114,20 @@ export const ListsSection = ({ themeOptions }: ListsSectionProps) => {
           <ListItem>
             <ListItemIcon>
               <SendIcon
-                sx={{ color: getColorForMode(themeOptions, "success", currentMode) }}
+                sx={{
+                  color: getColorForMode(themeOptions, "success", currentMode),
+                }}
               />
             </ListItemIcon>
             <ListItemText
               primary={
                 <Typography
                   sx={{
-                    color: getColorForMode(themeOptions, "success", currentMode),
+                    color: getColorForMode(
+                      themeOptions,
+                      "success",
+                      currentMode
+                    ),
                   }}
                 >
                   Sent

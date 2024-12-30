@@ -7,21 +7,16 @@ import {
   CardContent,
   Chip,
 } from "@mui/material";
-import { ThemeOptions } from "@mui/material/styles";
+import { useTheme } from "../../context/useTheme";
 import { getColorForMode } from "../../utils/themeUtils";
 import { ColorOption } from "../../types/mui";
 
-interface DataDisplaySectionProps {
-  themeOptions: ThemeOptions;
-}
-
-export const DataDisplaySection = ({
-  themeOptions,
-}: DataDisplaySectionProps) => {
+export const DataDisplaySection = () => {
+  const { themeOptions } = useTheme();
   const currentMode = themeOptions?.palette?.mode || "light";
 
   return (
-    <Grid item xs={12} >
+    <Grid item xs={12}>
       <Paper
         sx={{
           p: 3,

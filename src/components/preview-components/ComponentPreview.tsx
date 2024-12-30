@@ -38,14 +38,10 @@ import {
   Delete,
 } from "@mui/icons-material";
 import { TransitionsPreview } from "./TransitionsPreview";
+import { useTheme } from "../../context/useTheme";
 
-interface ComponentPreviewProps {
-  themeOptions: ThemeOptions | null;
-}
-
-export const ComponentPreview: React.FC<ComponentPreviewProps> = ({
-  themeOptions,
-}) => {
+export const ComponentPreview = () => {
+  const { themeOptions } = useTheme();
   if (!themeOptions) {
     return <div>No theme options provided</div>;
   }

@@ -30,7 +30,7 @@ export const ThemeSettingsTab = ({
           padding: 2,
         }}
       >
-        <ComponentPreview themeOptions={themeOptions} />
+        <ComponentPreview />
       </Box>
       <Box
         sx={{
