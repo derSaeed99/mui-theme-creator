@@ -68,14 +68,13 @@ export const ComponentPreview = () => {
             </Badge>
           </Toolbar>
         </AppBar>
-        <Box
+        <Paper
           sx={{
             flex: 1,
             p: 3,
             display: "flex",
             flexDirection: "column",
             gap: 4,
-            bgcolor: "background.default",
           }}
         >
           <Paper elevation={3} sx={{ p: 3 }}>
@@ -244,7 +243,7 @@ export const ComponentPreview = () => {
           <Paper elevation={3} sx={{ p: 3 }}>
             <TransitionsPreview duration={duration} />
           </Paper>
-        </Box>
+        </Paper>
       </Box>
     </ThemeProvider>
   );
