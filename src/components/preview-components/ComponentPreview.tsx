@@ -55,14 +55,14 @@ export const ComponentPreview = () => {
       <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton sx={{ mr: 2 }}>
+            <IconButton color="inherit" sx={{ mr: 2 }}>
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
               MuiV6 Theme Preview
             </Typography>
             <Badge badgeContent={4} color="error">
-              <IconButton>
+              <IconButton color="inherit">
                 <Notifications />
               </IconButton>
             </Badge>
