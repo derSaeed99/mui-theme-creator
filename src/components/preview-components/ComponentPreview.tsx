@@ -59,7 +59,7 @@ export const ComponentPreview = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              MuiV6 Theme Preview
+              MuiV6 Theme Creator
             </Typography>
             <Badge badgeContent={4} color="error">
               <IconButton color="inherit">
