@@ -80,11 +80,9 @@ export const PaletteSettings: React.FC<PaletteSettingsProps> = ({
         Palette
       </Typography>
       <Select
-        label="Mode"
         value={currentMode}
         onChange={handleModeChange}
         displayEmpty
-        inputProps={{ "aria-label": "Select Mode" }}
         sx={{ mb: 2, width: "100%" }}
       >
         <MenuItem value="light">Light</MenuItem>
