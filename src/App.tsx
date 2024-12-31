@@ -2,9 +2,9 @@ import { useState, lazy, Suspense } from "react";
 import { Box, CircularProgress } from "@mui/material";
 import { AppBar } from "./components/AppBar";
 
-const ThemeSettingsTab = lazy(() =>
-  import("./tabs/ThemeSettingsTab").then((module) => ({
-    default: module.ThemeSettingsTab,
+const PreviewTab = lazy(() =>
+  import("./tabs/PreviewTab").then((module) => ({
+    default: module.PreviewTab,
   }))
 );
 const ComponentsTab = lazy(() =>
@@ -23,14 +23,14 @@ export const App = () => {
     const params = new URLSearchParams(window.location.search);
     const tabValue = params.get("tab");
     if (!tabValue) {
-      params.set("tab", "settings");
+      params.set("tab", "preview");
       window.history.replaceState(
         {},
         "",
         `${window.location.pathname}?${params.toString()}`
       );
     }
-    return tabValue ? tabValue : "settings";
+    return tabValue ? tabValue : "preview";
   });
 
   const handleChangeTab = (_: React.SyntheticEvent, newValue: string) => {
@@ -63,7 +63,7 @@ export const App = () => {
           </Box>
         }
       >
-        {value === "settings" && <ThemeSettingsTab />}
+        {value === "preview" && <PreviewTab />}
         {value === "components" && <ComponentsTab />}
         {value === "animations" && <AnimationsTab />}
       </Suspense>

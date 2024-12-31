@@ -14,10 +14,16 @@ interface AppBarProps {
   handleChange: (event: React.SyntheticEvent, newValue: string) => void;
 }
 
-export const AppBar = ({value, handleChange}:AppBarProps) => {
+export const AppBar = ({ value, handleChange }: AppBarProps) => {
   return (
     <TopBar position="sticky" sx={{ width: "100%" }}>
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+        }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
@@ -36,18 +42,9 @@ export const AppBar = ({value, handleChange}:AppBarProps) => {
             },
           }}
         >
-          <Tab
-            label={<Typography>Theme Settings</Typography>}
-            value="settings"
-          />
-          <Tab
-            label={<Typography>Components</Typography>}
-            value="components"
-          />
-          <Tab
-            label={<Typography>Animations</Typography>}
-            value="animations"
-          />
+          <Tab label={<Typography>Preview</Typography>} value="preview" />
+          <Tab label={<Typography>Components</Typography>} value="components" />
+          <Tab label={<Typography>Animations</Typography>} value="animations" />
         </Tabs>
         <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
           <Typography

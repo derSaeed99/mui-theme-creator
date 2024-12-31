@@ -4,7 +4,7 @@ import { ComponentPreview } from "../components/preview-components/ComponentPrev
 import { ThemeSettings } from "../components/settings-components/ThemeSettings";
 import { useTheme } from "../context/useTheme";
 
-export const ThemeSettingsTab = () => {
+export const PreviewTab = () => {
   const { themeOptions, mode } = useTheme();
   return (
     <Box
